@@ -1,0 +1,13 @@
+{
+  "SERVER_HOST": "localhost",
+  "SERVER_PORT": 7000,
+  "FILE_LOG_LEVEL" : "debug",
+  "LOG_LOCATION" : "./log/log.txt",
+  "FILE_LOG_MAXSIZE" : 222340,
+  "DB_HOST" : "localhost",
+  "DB_USER" : "root",
+  "DB_PASSWORD" : "",
+  "DB_PORT" : 3306,
+  "DB_DILECT" : "mysql",
+  "DB_DATABASE" : "sample"
+}

@@ -1,0 +1,13 @@
+{
+  'extends': 'eslint:recommended',
+  'rules': {
+    'quotes': [1, 'single'],
+    'semi': [1, 'always'],
+    'no-console': 'error',
+    'no-unused-vars': 'error'
+  },
+  'env': {
+    'node': true,
+    'es6': true
+  }
+}
