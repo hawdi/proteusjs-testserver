@@ -13,6 +13,8 @@ const server = new Hapi.Server();
 const database = require('./db/database.js');
 const proteus = require('proteusjs');
 
+const Wreck = require('wreck');
+
 server.connection({
   host: config('SERVER_HOST'),
   port: config('SERVER_PORT')
@@ -41,13 +43,15 @@ server.register([
       mongodb: {
         url: 'mongodb://localhost:27017/meanlog'
       },
-      'knex' : database
+      'knex' : database,
+      'wreck' : Wreck
     },
   }], (err) => {
     server.route({
       method: 'GET',
       path: '/test',
       handler: function (request, reply) {
+
         //request.log();
         return database.select()
         .table('log')
@@ -61,6 +65,21 @@ server.register([
         });
       }
     });
+
+    server.route({
+      method: 'GET',
+      path: '/wrecktest',
+      handler: function (request, reply) {
+        const wrecktest = require('./handlers/wrecktest');
+        return wrecktest.flightSearch(Wreck, request)
+        .then(function(response){
+          reply('wreck test passed');
+        }).catch((err) => {
+          reply('wreck Error');
+        });
+      }
+    });
+
     server.start( (err) => {
       if (err) {
         logger.error('Server running at:', server.info.uri);

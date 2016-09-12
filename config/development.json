@@ -9,5 +9,6 @@
   "DB_PASSWORD" : "",
   "DB_PORT" : 3306,
   "DB_DILECT" : "mysql",
-  "DB_DATABASE" : "sample"
+  "DB_DATABASE" : "sample",
+  "GOIBIBO_API_URL": "http://developer.goibibo.com"
 }
