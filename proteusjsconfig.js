@@ -20,7 +20,9 @@ module.exports = {
         },
         knex : {
           query : true,
-          error : true
+          error : true,
+          end : true,
+          queryerror : false,
         }
       }
     },
