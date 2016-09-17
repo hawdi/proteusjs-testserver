@@ -1,6 +1,6 @@
 {
   "SERVER_HOST": "localhost",
-  "SERVER_PORT": 7000,
+  "SERVER_PORT": 6200,
   "FILE_LOG_LEVEL" : "debug",
   "LOG_LOCATION" : "./log/log.txt",
   "FILE_LOG_MAXSIZE" : 222340,

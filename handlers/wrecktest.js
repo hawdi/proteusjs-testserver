@@ -1,23 +1,13 @@
 'use strict'
 
-//const Wreck = require('wreck');
+const Wreck = require('wreck');
 const Q = require('q');
 
-const logger = require('../lib/logger');
 const config = require('../lib/config');
 
 var wreckClient = {};
 
-/***
-Inject below 5 fields:
-  source: 'CCU',
-  destination: 'DEL',
-  dateofdeparture: '20160626',
-  dateofarrival: '20160627',
-  seatingclass: 'E',
-**/
-
-wreckClient.flightSearch = function(Wreck, request){
+wreckClient.flightSearch = function(request){
   return Q.Promise(function(resolve, reject){
     let options = {
       app_id: request.appid,
@@ -48,6 +38,35 @@ wreckClient.flightSearch = function(Wreck, request){
               `&adults=1`+
               `&children=0`+
               `&infants=0`;
+
+    Wreck.get(url, wreckOptions, function (err, res, payload) {
+      if(err){
+        return reject(err);
+      }
+      if(res.statusCode !== 200){
+        return reject(new Error('Ibibo Service Call Failed'));
+      }
+      try{
+        payload = JSON.parse(payload.toString());
+      }catch(err){
+        return reject(new Error('Ibibo Data Parse Error'));
+      }
+      resolve(data);
+    });
+  });
+}
+
+wreckClient.testSuccess = function(request){
+  return Q.Promise(function(resolve, reject){
+    let options = {
+
+    }
+
+    var wreckOptions = {
+      timeout:   30000,    // 1 second, default: unlimited
+    };
+
+    let url = 'http://127.0.0.1:6500/test';
 
     Wreck.get(url, wreckOptions, function (err, res, payload) {
       if(err){
