@@ -1,6 +1,7 @@
 'use strict';
 
-const database = require('./db/database.js');
+const database = require('./db/database');
+const Wreck = require('wreck');
 
 module.exports =  [
 
@@ -15,7 +16,7 @@ module.exports =  [
       .then(function(rows) {
         reply('Knex test passed');
       }).catch((err) => {
-        reply('Knex Error');
+        reply('Knex error!');
       });
     }
   },
@@ -31,36 +32,60 @@ module.exports =  [
       .then(function(rows) {
         reply('Knex test passed');
       }).catch((err) => {
-        reply('Knex Error');
+        reply('Knex error');
       });
     }
   },
-  {
-    method: 'GET',
-    path: '/wrecktest',
-    handler: function (request, reply) {
-      const wrecktest = require('./handlers/wrecktest');
-      return wrecktest.flightSearch(request)
-      .then(function(response){
-        reply('wreck test passed');
-      }).catch((err) => {
-        reply('wreck Error');
-      });
-    }
-  },
+
+  //wreck success
+
   {
     method: 'GET',
     path: '/wrecksuccess',
     handler: function (request, reply) {
-      const wrecktest = require('./handlers/wrecktest');
-      return wrecktest.testSuccess(request)
-      .then(function(response){
-        reply('wreck test passed');
-      }).catch((err) => {
-        reply(err.message);
+      Wreck.get('http://json.org/example.html', { }, function (err, res, payload) {
+
+        if(err) {
+
+          return reply(err);
+        }
+
+        if(res.statusCode !== 200) {
+
+          return reply('Response code is not 200!');
+        }
+
+        return reply('Getting response');
       });
     }
   },
+
+  //wreck fail
+
+  {
+    method: 'GET',
+    path: '/wreckfail',
+    handler: function (request, reply) {
+
+      let url = 'http://jsn.og/example.htm';
+
+      Wreck.get(url, { }, function (err, res, payload) {
+
+        if(err) {
+
+          return reply(err);
+        }
+
+        if(res.statusCode !== 200) {
+
+          return reply('Response code is not 200!');
+        }
+
+        return reply('Getting response');
+      });
+    }
+  },
+
   //db test
   {
     method: 'GET',

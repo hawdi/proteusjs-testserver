@@ -28,7 +28,7 @@ module.exports = {
       enable: true,
       log: {
         request: true,
-        response : true
+        response : false
       }
     }
   }
