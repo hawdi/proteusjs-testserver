@@ -1,7 +1,7 @@
 {
-  "name": "node-service",
+  "name": "proteusjs-testserver",
   "version": "0.0.1",
-  "description": "Hapi with Gulp",
+  "description": "Proteusjs Test Server",
   "dependencies": {
     "hapi": "^13.4.1",
     "hapi-swagger": "^6.1.0",
