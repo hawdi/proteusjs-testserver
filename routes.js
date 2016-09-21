@@ -3,6 +3,38 @@
 const database = require('./db/database.js');
 
 module.exports =  [
+
+  // knex success
+
+  {
+    method: 'GET',
+    path: '/knexsuccess',
+    handler: function (request, reply) {
+      return database.select()
+      .table('log')
+      .then(function(rows) {
+        reply('Knex test passed');
+      }).catch((err) => {
+        reply('Knex Error');
+      });
+    }
+  },
+
+  //knex error
+
+  {
+    method: 'GET',
+    path: '/knexfail',
+    handler: function (request, reply) {
+      return database.select()
+      .table('logg')
+      .then(function(rows) {
+        reply('Knex test passed');
+      }).catch((err) => {
+        reply('Knex Error');
+      });
+    }
+  },
   {
     method: 'GET',
     path: '/wrecktest',
@@ -34,9 +66,9 @@ module.exports =  [
     method: 'GET',
     path: '/test',
     handler: function (request, reply) {
-      //request.log();
+      request.log();
       return database.select()
-      .table('log')
+      .table('logg')
       .then(function(rows){
         //console.log(rows);
         reply('test passed');

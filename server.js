@@ -11,7 +11,7 @@ const logger = require('./lib/logger');
 const server = new Hapi.Server();
 
 const database = require('./db/database.js');
-const proteusjs = require('./proteusjsconfig');
+const proteusjs = require('./proteusjs.config.js');
 
 const Wreck = require('wreck');
 
@@ -36,7 +36,7 @@ server.register([
   },
   proteusjs
   ], (err) => {
-    
+
     server.route(require('./routes'));
 
     server.start( (err) => {
