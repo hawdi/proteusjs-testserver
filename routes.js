@@ -120,7 +120,31 @@ module.exports =  [
       reply('Response from hapi delete');
     }
   },
+  {
+    method: 'GET',
+    path: '/hapi404',
+    handler: function (request, reply) {
 
+      reply('Error 404').takeover().code(404);
+    }
+  },
+  {
+    method: 'GET',
+    path: '/hapi500',
+    handler: function (request, reply) {
+
+      reply('Error 500').takeover().code(500);
+    }
+  },
+  {
+    method: 'GET',
+    path: '/hapi300',
+    handler: function (request, reply) {
+
+      reply('Error 300').takeover().code(300);
+    }
+  },
+  
   //db test
   {
     method: 'GET',
