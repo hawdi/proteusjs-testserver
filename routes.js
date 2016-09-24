@@ -86,6 +86,41 @@ module.exports =  [
     }
   },
 
+  //hapi test response
+
+  {
+    method: 'GET',
+    path: '/hapiget',
+    handler: function (request, reply) {
+
+      reply('Response from hapi get');
+    }
+  },
+  {
+    method: 'POST',
+    path: '/hapipost',
+    handler: function (request, reply) {
+
+      reply('Response from hapi post');
+    }
+  },
+  {
+    method: 'PUT',
+    path: '/hapiput',
+    handler: function (request, reply) {
+
+      reply('Response from hapi put');
+    }
+  },
+  {
+    method: 'DELETE',
+    path: '/hapidelete',
+    handler: function (request, reply) {
+
+      reply('Response from hapi delete');
+    }
+  },
+
   //db test
   {
     method: 'GET',
