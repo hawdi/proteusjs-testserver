@@ -92,7 +92,7 @@ module.exports =  [
     method: 'GET',
     path: '/hapiget',
     handler: function (request, reply) {
-
+      request.log();
       reply('Response from hapi get');
     }
   },
@@ -138,13 +138,21 @@ module.exports =  [
   },
   {
     method: 'GET',
+    path: '/hapi500_2',
+    handler: function (request, reply) {
+      x = x + 5;
+      reply('Error 500').takeover().code(500);
+    }
+  },
+  {
+    method: 'GET',
     path: '/hapi300',
     handler: function (request, reply) {
 
       reply('Error 300').takeover().code(300);
     }
   },
-  
+
   //db test
   {
     method: 'GET',

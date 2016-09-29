@@ -1,12 +1,29 @@
 'use strict';
 
-const proteus = require('proteusjs');
+const Proteus = require('proteusjs');
+const proteusConsole = require('proteusjs-console');
 const database = require('./db/database.js');
 
+const Console = new proteusConsole();
+
 module.exports = {
-  register: proteus,
+  register: Proteus,
   options: {
-    reporters : {},
+    reporters : {
+      console : Console
+    },
+
+    //hapi setup
+
+    hapi: {
+      log: {
+        log: true,
+        request: true,
+        response: true,
+        ops: true,
+        error:true
+      }
+    },
 
     //knex config
 
@@ -28,7 +45,7 @@ module.exports = {
       enable: true,
       log: {
         request: true,
-        response : false
+        response : true
       }
     }
   }
